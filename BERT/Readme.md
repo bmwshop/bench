@@ -18,5 +18,5 @@ Now, run the benchmark:
 sh run.sh data_dir n_gpus batch precision [fp16/fp32]
 # on a 1-GPU 16 GB system:
 # sh run.sh /home/nvidia/data 1 10 fp16
-# sh run.sh /home/nvidia/data 1 5 fp32
+# sh run.sh /home/nvidia/data 1 6 fp32
 ```
