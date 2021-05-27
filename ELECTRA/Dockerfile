@@ -20,3 +20,4 @@ RUN pip install --upgrade --no-cache-dir pip \
 
 RUN chmod a+x scripts/benchmark_squad.sh
 RUN ln -s /workspace/DeepLearningExamples/TensorFlow2/LanguageModeling/ELECTRA /workspace/electra
+RUN chmod a+x scripts/run_squad.sh

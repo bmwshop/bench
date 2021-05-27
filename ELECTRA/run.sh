@@ -2,26 +2,38 @@
 
 
 WEIGHTS=None
-SCRIPT=scripts/benchmark_squad.sh
+SCRIPT=scripts/run_squad.sh
 
-if [ $# -lt 4 ]
+if [ $# -lt 5 ]
 then
-	echo "use: run.sh data_dir ngpus batch precision"
+	echo "use: run.sh data_dir ngpus batch epochs precision"
 	exit 1
 fi
 data_dir=$1
 GPUS=$2
 BATCH=$3
-PRECISION=$4
+EPOCHS=$4
+PRECISION=$5
 
 SQUAD_DIR="/data/download/squad/v1.1"
 OUT_DIR="/data/BERT/results/SQuaD"
 CACHE_DIR="/data/cache"
-MODE="train"
+MODE="train_eval"
+MODEL="google/electra-base-discriminator"
+LR=4e-4
+INFER_BATCH=128
+SEED=1
+SQUAD_VERSION=1.1
+ienv="interactive"
+MAX_STEPS=-1
+
+
 
 # bash scripts/benchmark_squad.sh train 1 16 16 amp v1.1 /data/download/squad/v1.1 /data/results None /data/cache
 
 
-docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti foo bash -c "${SCRIPT} ${MODE} ${GPUS} ${BATCH} ${BATCH} ${PRECISION} v1.1 ${SQUAD_DIR} ${OUT_DIR} ${WEIGHTS} ${CACHE_DIR}"
+docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti foo bash -c "${SCRIPT} ${MODEL} ${EPOCHS} ${BATCH} ${INFER_BATCH} ${LR} ${PRECISION} ${GPUS} ${SEED} ${SQUAD_VERSION} ${SQUAD_DIR} ${OUT_DIR} ${WEIGHTS} ${MODE} ${ienv} ${CACHE_DIR} ${MAX_STEPS}
+
+# ${MODE} ${GPUS} ${BATCH} ${BATCH} ${PRECISION} v1.1 ${SQUAD_DIR} ${OUT_DIR} ${WEIGHTS} ${CACHE_DIR}"
 
 # example: sh run.sh ~/data 1 16 amp

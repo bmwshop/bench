@@ -1,7 +1,7 @@
 ## PyTorch BERT benchmark
 
 
-This is a simple orchestration around the [nnUNet DL Example](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT)
+This is a simple orchestration around the [BERT DL Example](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT)
 
 Build the container:
 ```

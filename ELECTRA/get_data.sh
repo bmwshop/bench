@@ -28,7 +28,6 @@ then
 fi
 
 
-wget https://storage.googleapis.com/electra-data/electra_base.zip -O /data/google/electra_base.zip
 if [ ! -f $data_dir/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt ]
 then
   echo "downloading the pre-trained checkpoint"

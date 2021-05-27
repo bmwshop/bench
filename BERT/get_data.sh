@@ -25,3 +25,11 @@ then
 else
   echo "checkpoint is already present"
 fi
+
+if [ ! -f $data_dir/bert_base.pt ]
+then
+  echo "downloading the base pre-trained checkpoint"
+  docker run --rm -v $data_dir:/data foo sh -c "wget --content-disposition wget --content-disposition https://api.ngc.nvidia.com/v2/models/nvidia/bert_pyt_ckpt_base_pretraining_amp_lamb/versions/19.09.0/zip -O /data/bert_pyt_ckpt_base_pretraining_amp_lamb_19.09.0.zip && unzip /data/bert_pyt_ckpt_base_pretraining_amp_lamb_19.09.0.zip -d /data && rm /data/bert_pyt_ckpt_base_pretraining_amp_lamb_19.09.0.zip"
+else
+  echo "base checkpoint is already present"
+fi

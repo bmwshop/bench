@@ -15,7 +15,7 @@ sh get_data.sh /home/nvidia/data
 
 Now, run the benchmark:
 ```
-sh run.sh data_dir n_gpus batch precision [amp|fp32]
+sh run.sh data_dir n_gpus batch num_epochs precision [amp|fp32]
 # on a 1-GPU 16 GB system:
-# sh run.sh /home/nvidia/data 1 16 amp
+# sh run.sh /home/nvidia/data 1 16 1 amp
 ```
