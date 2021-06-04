@@ -1,4 +1,4 @@
-## ELECTRA TF2 benchmark
+## ELECTRA TF2 benchmark. WORK IN PROGRESS!
 
 
 This is a simple orchestration around the [TF2 Electra Example](https://github.com/NVIDIA/DeepLearningExamples/tree/master/TensorFlow2/LanguageModeling/ELECTRA)
