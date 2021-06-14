@@ -1,3 +1,4 @@
 #!/bin/sh
 
-docker build -t foo .
+IMG="electra_bench"
+docker build -t ${IMG} .

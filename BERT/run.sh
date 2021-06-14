@@ -1,6 +1,6 @@
 #!/bin/sh
 
-
+IMG="bert_bench"
 WEIGHTS=DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt
 SCRIPT=scripts/run_squad.sh
 EPOCHS=1
@@ -27,6 +27,6 @@ MAX_STEPS=-1
 
 # scripts/run_squad.sh /workspace/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt 2.0 10 3e-5 fp16 2
 
-docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti foo sh -c "${SCRIPT} /data/${WEIGHTS} ${EPOCHS} ${BATCH} ${LR} ${PRECISION} ${GPUS} ${SEED} ${SQUAD_DIR} ${VOCAB_FILE} ${OUT_DIR} ${MODE} ${CONFIG_FILE} ${MAX_STEPS}" 
+docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti ${IMG} sh -c "${SCRIPT} /data/${WEIGHTS} ${EPOCHS} ${BATCH} ${LR} ${PRECISION} ${GPUS} ${SEED} ${SQUAD_DIR} ${VOCAB_FILE} ${OUT_DIR} ${MODE} ${CONFIG_FILE} ${MAX_STEPS}" 
 
 # example: sh run.sh ~/data 1 10 fp16

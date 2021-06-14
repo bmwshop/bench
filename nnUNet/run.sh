@@ -1,6 +1,6 @@
 #!/bin/sh
 
-
+IMG="nnunet_bench"
 if [ $# -lt 4 ]
 then
 	echo "use: run.sh data_dir ngpus batch ndim [--amp]"
@@ -17,4 +17,4 @@ then
   amp="--amp"
 fi
 
-docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti foo sh -c "time python -u scripts/benchmark.py --mode train --gpus $ngpus --dim $ndim --batch_size $batch $amp" 
+docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti ${IMG} sh -c "time python -u scripts/benchmark.py --mode train --gpus $ngpus --dim $ndim --batch_size $batch $amp" 

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 
+IMG="electra_bench"
 WEIGHTS=None
 SCRIPT=scripts/run_squad.sh
 
@@ -33,7 +34,7 @@ MAX_STEPS=-1
 # bash scripts/benchmark_squad.sh train 1 16 16 amp v1.1 /data/download/squad/v1.1 /data/results None /data/cache
 
 
-docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti foo bash -c "${SCRIPT} ${MODEL} ${EPOCHS} ${BATCH} ${INFER_BATCH} ${LR} ${PRECISION} ${GPUS} ${SEED} ${SQUAD_VERSION} ${SQUAD_DIR} ${OUT_DIR} ${WEIGHTS} ${MODE} ${ienv} ${CACHE_DIR} ${MAX_STEPS}"
+docker run --rm --gpus all -v $data_dir:/data --entrypoint="" -ti ${IMG} bash -c "${SCRIPT} ${MODEL} ${EPOCHS} ${BATCH} ${INFER_BATCH} ${LR} ${PRECISION} ${GPUS} ${SEED} ${SQUAD_VERSION} ${SQUAD_DIR} ${OUT_DIR} ${WEIGHTS} ${MODE} ${ienv} ${CACHE_DIR} ${MAX_STEPS}"
 
 # ${MODE} ${GPUS} ${BATCH} ${BATCH} ${PRECISION} v1.1 ${SQUAD_DIR} ${OUT_DIR} ${WEIGHTS} ${CACHE_DIR}"
 

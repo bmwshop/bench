@@ -1,6 +1,7 @@
 #!/bin/sh
 
 
+IMG="electra_bench"
 if [ $# -lt 1 ]
 then
 	echo "use: get_data.sh data_dir"
@@ -12,8 +13,8 @@ LDIR=/workspace/DeepLearningExamples/PyTorch/LanguageModeling/BERT
 if [ ! -d $data_dir/download ]
 then
   echo "downloading data"
-  docker run --rm -v $data_dir:/data foo python3 $LDIR/data/bertPrep.py --action download --dataset squad
-  docker run --rm -v $data_dir:/data foo python3 $LDIR/data/bertPrep.py --action download --dataset google_pretrained_weights
+  docker run --rm -v $data_dir:/data ${IMG} python3 $LDIR/data/bertPrep.py --action download --dataset squad
+  docker run --rm -v $data_dir:/data ${IMG} python3 $LDIR/data/bertPrep.py --action download --dataset google_pretrained_weights
 else
   echo "data is already downloaded"
 fi
@@ -24,7 +25,7 @@ then
 fi
 if [ ! -f $data_dir/google/electra_base.zip ]
 then
-	wget https://storage.googleapis.com/electra-data/electra_base.zip -O /data/google/electra_base.zip
+	wget -q https://storage.googleapis.com/electra-data/electra_base.zip -O $data_dir/google/electra_base.zip
 fi
 
 

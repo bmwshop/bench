@@ -1,3 +1,4 @@
 #!/bin/sh
 
-docker build -t foo .
+IMG="nnunet_bench"
+docker build -t ${IMG} .

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+IMG="bert_bench"
 
 if [ $# -lt 1 ]
 then
@@ -12,8 +13,8 @@ LDIR=/workspace/DeepLearningExamples/PyTorch/LanguageModeling/BERT
 if [ ! -d $data_dir/download ]
 then
   echo "downloading data"
-  docker run --rm -v $data_dir:/data foo python3 $LDIR/data/bertPrep.py --action download --dataset squad
-  docker run --rm -v $data_dir:/data foo python3 $LDIR/data/bertPrep.py --action download --dataset google_pretrained_weights
+  docker run --rm -v $data_dir:/data ${IMG} python3 $LDIR/data/bertPrep.py --action download --dataset squad
+  docker run --rm -v $data_dir:/data ${IMG} python3 $LDIR/data/bertPrep.py --action download --dataset google_pretrained_weights
 else
   echo "data is already downloaded"
 fi
