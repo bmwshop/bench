@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t foo .
+docker build -t bert_bench .
