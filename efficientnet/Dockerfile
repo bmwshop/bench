@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:21.04-tf2-py3
+FROM nvcr.io/nvidia/tensorflow:22.04-tf2-py3
 
 RUN apt update && apt install -y git wget bzip2 pv bzip2 cabextract
 

@@ -1,4 +1,4 @@
-ARG FROM_IMAGE_NAME=nvcr.io/nvidia/pytorch:21.04-py3
+ARG FROM_IMAGE_NAME=nvcr.io/nvidia/pytorch:22.04-py3
 FROM ${FROM_IMAGE_NAME}
 
 RUN apt install -y git wget
