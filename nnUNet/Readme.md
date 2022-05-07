@@ -1,4 +1,4 @@
-## MaskRCNN benchmark
+## nnUNet benchmark
 
 
 This is a simple orchestration around the [nnUNet DL Example](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Segmentation/nnUNet#training-performance-benchmark)
@@ -13,7 +13,7 @@ This example requires a significant data download.  So, we're not putting it in 
 sh get_data.sh /home/nvidia/data
 ```
 
-Now, run the benchmark:
+Now, run the benchmarks - note that there are two; for 2D and 3D data -- ideally you run both:
 ```
 sh run.sh data_dir n_gpus batch n_dims [--amp]
 # on a 1-GPU 16 GB system:
