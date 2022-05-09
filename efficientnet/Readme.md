@@ -1,13 +1,13 @@
-## TF2 EfficientNet benchmark. WORK IN PROGRESS!
+## TF2 EfficientNet benchmark. UNFINISHED WORK IN PROGRESS!
 
 
-This is a simple orchestration around the [TF2 Electra Example](https://github.com/NVIDIA/DeepLearningExamples/tree/master/TensorFlow2/LanguageModeling/ELECTRA)
+This is a simple orchestration around the [EfficientNet v2-S For TensorFlow 2.6](https://github.com/NVIDIA/DeepLearningExamples/tree/master/TensorFlow2/Classification/ConvNets/efficientnet_v2)
 
 Build the container:
 ```
 sh build.sh
 ```
-This example requires a significant data download.  So, we're not putting it in a container.  We need to pass through a local directory and then run the data download and pre-processing:
+This example requires a significant data download (imagenet ideally) - the trick would be to find a subset of imagenet that could be downloaded automatically
 ```
 # the parameter is where the data will be downloaded to
 sh get_data.sh /home/nvidia/data
