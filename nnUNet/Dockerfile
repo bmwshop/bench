@@ -10,6 +10,9 @@ RUN pip install --disable-pip-version-check -r requirements.txt
 RUN pip install monai==0.8.1 --no-dependencies
 RUN pip uninstall -y torchtext
 RUN pip install numpy --upgrade
+RUN pip install -U scikit-image
+RUN pip install -U pytorch-lightning
+RUN pip install -U rich
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 RUN unzip -qq awscliv2.zip
