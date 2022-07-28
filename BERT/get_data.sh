@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x 
+
 IMG="bert_bench"
 
 if [ $# -lt 1 ]
@@ -22,9 +24,10 @@ fi
 if [ ! -f $data_dir/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt ]
 then
   echo "downloading the pre-trained checkpoint"
-  wget --quiet https://api.ngc.nvidia.com/v2/models/nvidia/bert_pyt_ckpt_large_pretraining_amp_lamb/versions/19.07.0/zip -O $data_dir/bert_pyt_ckpt_large_pretraining_amp_lamb_19.07.0.zip 
-  unzip $data_dir/bert_pyt_ckpt_large_pretraining_amp_lamb_19.07.0.zip -d $data_dir
-  rm $data_dir/bert_pyt_ckpt_large_pretraining_amp_lamb_19.07.0.zip 
+  # wget --quiet https://api.ngc.nvidia.com/v2/models/nvidia/bert_pyt_ckpt_large_pretraining_amp_lamb/versions/19.07.0/zip -O $data_dir/bert_pyt_ckpt_large_pretraining_amp_lamb_19.07.0.zip 
+  wget --quiet 'https://api.ngc.nvidia.com/v2/models/nvidia/bert_pyt_ckpt_large_pretraining_amp_lamb/versions/19.07.0/files/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt' -O $data_dir/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt
+  # unzip $data_dir/bert_pyt_ckpt_large_pretraining_amp_lamb_19.07.0.zip -d $data_dir
+  # rm $data_dir/bert_pyt_ckpt_large_pretraining_amp_lamb_19.07.0.zip 
 else
   echo "checkpoint is already present"
 fi

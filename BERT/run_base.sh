@@ -40,7 +40,16 @@ MAX_STEPS=-1
 
 # docker run --rm --gpus ${GPUS} -v $data_dir:/data --entrypoint="" -ti foo sh -c "${SCRIPT} /data/${WEIGHTS} ${EPOCHS} ${BATCH} ${LR} ${PRECISION} ${GPUS} ${SEED} ${SQUAD_DIR} ${VOCAB_FILE} ${OUT_DIR} ${MODE} ${CONFIG_FILE} ${MAX_STEPS}" 
 
-docker run --rm --gpus ${GPUS} -v $data_dir:/data --entrypoint="" -ti ${IMG} sh -c "python run_squad.py --init_checkpoint=/data/${WEIGHTS} --do_train --train_file=${SQUAD_DIR}/train-v1.1.json --train_batch_size=${BATCH}  --do_lower_case  --bert_model=${BERT_MODEL}  --learning_rate=${LR}  --seed=${SEED}  --num_train_epochs=${EPOCHS}  --max_seq_length=384  --doc_stride=128  --output_dir=${OUT_DIR}  --vocab_file=${VOCAB_FILE}  --config_file=${CONFIG_FILE}  --max_steps=-1 ${PRECISION}  |& tee ${OUT_DIR}/logfile.txt"
+if [ "${GPUS}" = "1" ] ; then
+  mpi_command=""
+else
+  mpi_command=" -m torch.distributed.launch --nproc_per_node=${GPUS}"
+fi
+
+CMD="python  $mpi_command run_squad.py "
+
+
+docker run --rm --gpus ${GPUS} -v $data_dir:/data --entrypoint="" -ti ${IMG} sh -c "python ${mpi_command} run_squad.py --init_checkpoint=/data/${WEIGHTS} --do_train --train_file=${SQUAD_DIR}/train-v1.1.json --train_batch_size=${BATCH}  --do_lower_case  --bert_model=${BERT_MODEL}  --learning_rate=${LR}  --seed=${SEED}  --num_train_epochs=${EPOCHS}  --max_seq_length=384  --doc_stride=128  --output_dir=${OUT_DIR}  --vocab_file=${VOCAB_FILE}  --config_file=${CONFIG_FILE}  --max_steps=-1 ${PRECISION}  |& tee ${OUT_DIR}/logfile.txt"
 
 
 # example: sh run.sh ~/data 1 10 fp16
