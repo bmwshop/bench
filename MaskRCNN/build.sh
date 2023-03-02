@@ -1,4 +1,4 @@
 #!/bin/sh
 
 IMG="maskrcnn_bench"
-docker build -t ${IMG} .
+docker build --no-cache -t ${IMG} .

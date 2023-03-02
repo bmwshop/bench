@@ -1,3 +1,4 @@
 #!/bin/sh
 
-docker build -t bert_bench .
+IMG="bert_bench"
+docker build -t ${IMG} .
